@@ -1,0 +1,28 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    width: 90%; /* Adjusts the width of the container holding the text box and button */
+    text-align: center; /* Ensures the button is centered horizontally */
+  }
+  
+  .big-text-box {
+    width: 100%; /* Makes the text box take up all of the container's width */
+    height: 200px; /* Adjust the height as needed */
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px; /* Adjust the font size as needed */
+    margin-bottom: 20px; /* Adds some space between the text box and the button */
+  }
+  
+  .translate-button {
+    padding: 10px 20px; /* Adjust padding as needed for button size */
+    font-size: 16px; /* Button font size */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
