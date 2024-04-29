@@ -4,35 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Language Translator</title>
-    <link rel="icon" type="" href="img/cap.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5 mb-4">Translator</h1>
-        <div id="google_translate_element"></div> <!-- Container for the Google Translate widget -->
+        <h1 class="mt-5 mb-4">Simple Word Translator</h1>
         <div class="form-group">
             <label for="wordInput">Write Here:</label>
-            <input type="text" class="form-control" id="wordInput">
+            <textarea class="form-control" id="wordInput"></textarea>
         </div>
-        <div class="form-group">
-            <label for="languageSelect">Select a language:</label>
-            <select class="form-control" id="languageSelect">
-                <option value="es">Spanish</option> <!-- Spanish option -->
-            </select>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="languageSelect">Select a language:</label>
+                    <select class="form-control" id="languageSelect">
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-primary mt-4" id="translateBtn">Translate</button>
+            </div>
         </div>
-        <button type="button" class="btn btn-primary" id="translateBtn">Translate</button>
-        <div id="translationResult" class="mt-3"></div>
+        <div class="form-group mt-3">
+            <label for="translationResult">Translation:</label>
+            <input type="text" class="form-control" id="translationResult" readonly>
+        </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@uppy/core@1/dist/uppy.min.js"></script>
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-    }
+    <script>
+        const translations = {
+            'hello': {'es': 'hola', 'fr': 'bonjour'},
+            'morning': {'es': 'mañana', 'fr': 'matin'},
+            'night': {'es': 'noche', 'fr': 'nuit'},
+            'bye': {'es': 'adiós', 'fr': 'au revoir'},
+            'evening': {'es': 'tarde', 'fr': 'soir'},
+            'hot': {'es': 'caliente', 'fr': 'chaud'},
+            'cold': {'es': 'frío', 'fr': 'froid'},
+            'house': {'es': 'casa', 'fr': 'maison'},
+            'school': {'es': 'escuela', 'fr': 'école'},
+            'car': {'es': 'coche', 'fr': 'voiture'}
+        };
+
+        document.getElementById('translateBtn').addEventListener('click', function() {
+            const text = document.getElementById('wordInput').value.trim().toLowerCase(); // Normalize input
+            const lang = document.getElementById('languageSelect').value;
+
+            if (translations[text] && translations[text][lang]) {
+                document.getElementById('translationResult').value = translations[text][lang];
+            } else {
+                document.getElementById('translationResult').value = "No translation available.";
+            }
+        });
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
