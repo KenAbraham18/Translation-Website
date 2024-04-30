@@ -5,13 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Language Translator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Overall body and html styling for full coverage and centering content */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa; /* Lighter background for a modern look */
+            font-family: 'Arial', sans-serif; /* Professional font choice */
+        }
+
+        /* Container styling for a nice card-like appearance */
+        .container {
+            width: 90%;
+            max-width: 600px; /* Restricts the container's maximum width for better appearance on large screens */
+            background-color: #fff; /* White background for the main content area */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            text-align: center;
+        }
+
+        /* Textarea styling for better text input experience */
+        .big-text-box {
+            width: 100%;
+            height: 150px; /* Optimal height for input */
+            padding: 10px;
+            border: 1px solid #ccc; /* Subtle border */
+            border-radius: 4px; /* Rounded corners */
+            box-sizing: border-box;
+            font-size: 16px; /* Readable font size */
+            margin-bottom: 20px; /* Space between elements */
+        }
+
+        /* Button styling with a more vibrant color */
+        .translate-button {
+            width: 100%; /* Full width button */
+            padding: 10px 0; /* Padding for better touch area */
+            font-size: 16px; /* Consistent font size */
+            color: white; /* White text color */
+            background-color: #007bff; /* Bootstrap primary color */
+            border: none;
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        .translate-button:hover {
+            background-color: #0056b3; /* Darker on hover for interactive feel */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1 class="mt-5 mb-4">Simple Word Translator</h1>
         <div class="form-group">
             <label for="wordInput">Write Here:</label>
-            <textarea class="form-control" id="wordInput"></textarea>
+            <textarea class="form-control big-text-box" id="wordInput"></textarea>
         </div>
         <div class="row">
             <div class="col-sm">
@@ -24,7 +84,7 @@
                 </div>
             </div>
             <div class="col-sm">
-                <button type="button" class="btn btn-primary mt-4" id="translateBtn">Translate</button>
+                <button type="button" class="btn translate-button mt-4" id="translateBtn">Translate</button>
             </div>
         </div>
         <div class="form-group mt-3">
@@ -46,11 +106,11 @@
             'school': {'es': 'escuela', 'fr': 'école'},
             'car': {'es': 'coche', 'fr': 'voiture'}
         };
-
+    
         document.getElementById('translateBtn').addEventListener('click', function() {
             const text = document.getElementById('wordInput').value.trim().toLowerCase(); // Normalize input
             const lang = document.getElementById('languageSelect').value;
-
+    
             if (translations[text] && translations[text][lang]) {
                 document.getElementById('translationResult').value = translations[text][lang];
             } else {
@@ -58,5 +118,3 @@
             }
         });
     </script>
-</body>
-</html>
